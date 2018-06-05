@@ -1,10 +1,12 @@
-// define server here
+var path = require('path');
 var express = require('express');
-var bodyParser = require('body-parser');
 
 var app = express();
-app.get('/', function(req, res) {
-	console.log('SERVER GET WORKS');
-})
-// app.use()
-app.listen(3000);   
+
+app.use(express.static(path.join(__dirname, '../public')));
+app.get('/restaurant/:restaurant_id', function(req, res) {
+  res.send(req.params);
+}); 
+
+app.listen(3000);
+
