@@ -1,22 +1,22 @@
+#reserveContainer {
+  border: 1px solid #dcd6d6;
+}
+
 #title {
-  padding-right: 10px;
+  margin-right: 10px;
   padding-bottom: 10px;
-  padding-left: 10px;
+  margin-left: 10px;
 	border-bottom: 1px solid #dcd6d6;
-	width: 100%;
   text-align: center;
   font-family: "Arial Black", Gadget, sans-serif;
 }
-#appBox {
-  float: right;
-  border: 1px solid #dcd6d6;
-  width: 100%;
-}
 
 .opts {
-  width: 100%;
+  width: 95%;
   background: rgba(0,0,0,0);
   color: solid black;
+  border-bottom: 1px solid #dcd6d6;
+  -webkit-appearance: none;
 }
 
 #partySize {
@@ -28,31 +28,112 @@
   padding-bottom: 10px;
   border-bottom: 1px solid #dcd6d6;
 }
- 
-#PartySize {
-  Border: none;
+
+#partyD #arrow #for{
+  display: inline-block;
 }
 
-#dateTitle, #timeTitle {
-  display: inline;
-}
-
-#calendar, #time{
-  display: inline;
-}
-
-#calendar {
-  padding-right: 30%;
+#timeSelect {
+  border: none;
+  background-color: white;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  width: 95%;
+  background: rgba(0,0,0,0);
+  -webkit-appearance: none;
 }
 
 #time {
-  padding-right: 30%;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding-top: 0px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dcd6d6;
 }
 
-#dateTitle {
-  padding-right: 50%;
+#partyD {
+  border-bottom: 1px solid #dcd6d6;
+  padding-bottom: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#for {
+  position: relative;
+  top: 20px;
+  left: 0px;
+  pointer-events: none;
+}
+
+#arrow {
+  position: relative;
+  right: -90%;
+  top: 23px;
+  pointer-events: none;
+}
+
+#partyTitle {
+  margin-left: 15px;
+}
+
+#dateTitle{
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 #timeTitle {
-  padding-right: 50%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#PartySize {
+  Border: none;
+  margin-left: 10px;
+  outline: none;
+}
+
+.buttStyle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+#findButt {
+  width: 288px;
+  height: 48px;
+  background-color: #da3743;
+  border-radius: 0;
+}
+
+#findButt:hover {
+  background: #b7222d;
+}
+#timeButt {
+  background-color: #da3743;
+  border-radius: 0;
+  margin-right: 8px;
+  margin-top: 8px;
+}
+
+#timeButt:hover {
+  background: #b7222d;
+}
+
+#slots {
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+#time {
+  padding-left: 0px;
+  top: 2px;
 }

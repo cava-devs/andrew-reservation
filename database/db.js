@@ -12,7 +12,7 @@ let grabTimeSlots = (rest_id, date, cb) => {
     if (error) {
       throw error;
     }
-    cb(results);
+    cb(results); 
   });
 }
 let postTimeSlot = (rest_id, date, time, cb) => {
@@ -23,5 +23,5 @@ let postTimeSlot = (rest_id, date, time, cb) => {
     }
   });
 }
-
+ 
 module.exports.grabTimeSlots = grabTimeSlots;

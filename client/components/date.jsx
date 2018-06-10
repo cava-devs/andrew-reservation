@@ -1,10 +1,8 @@
 import React from 'react';
 
-const Date = (props) => {
-  return (
-    <input onChange={props.dateChange} type="date" id="calendar" value="2018-05-31" ></input>
-  ) 
-}
+const Date = (props) => (
+    <input value={props.date} onChange={props.dateChange} type="date" id="calendar" ></input>
+) 
 
 export default Date;
 

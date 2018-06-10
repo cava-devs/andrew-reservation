@@ -9,24 +9,32 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurantId: 1001,
+      restaurantId: 1001, 
       timeSlots: [],
       partySize: 2,
+      partySizeMax: 15,
       date: "2018-05-31",
-      time: "5:00 am",
+      time: "5:00 PM",
       pickTime: "",
       clicked: false,
     }
-  } 
+  }   
+  componentDidMount() {
+    axios.get('/restaurant/1001/' + this.state.date)
+      .then((response) => {
+        this.setState({
+          timeSlots: response.data,
+        });
+      });
+  }
   findTable () {
-    var context = this; 
-    axios.get('/restaurant/' + this.state.restaurantId + '/' + this.state.date)
-      .then(function(response) {
-        context.setState({
+      axios.get(`/restaurant/${this.state.restaurantId}/${this.state.date}`)
+      .then((response) => {
+        this.setState({
           timeSlots: response.data,
           clicked: true,
-        })
-      }); 	
+        });
+      });
   }
   partySizeChange (event) {
     this.setState({
@@ -45,23 +53,29 @@ class App extends React.Component {
   }
   render () {
     return (
-      <div id="appBox">
-        <div id="reserveBox">
-          <h3 id="title">Make a reservation</h3>
-          <div id="partySize">
-            <PartySize partyChange={this.partySizeChange.bind(this)} />
+      <div id="reserveContainer" className="col-lg-5 col-md-5 col-xs-10">
+        <div className="row">
+          <h4 id="title">Make a reservation</h4>
+          <PartySize partyChange={this.partySizeChange.bind(this)} />
+        </div>
+        <div className="row">
+          <div id="dateTitle" className="col-lg-5 col-md-5 col-xs-5">Date</div>
+          <div id="timeTitle" className="col-lg-5 col-md-5 col-xs-5">Time</div>        
+        </div>
+        <div className="row">
+          <div className="col-lg-5 col-md-5 col-xs-5 date">
+            <Date date={this.state.date} dateChange={this.dateChange.bind(this)} />
+          </div>
+          <div className="col-lg-5 col-md-5 col-xs-5 time">
+            <Time time={this.state.time} timeChange={this.timeChange.bind(this)} />
           </div>
         </div>
-        <div id="headers">
-        <div id="dateTitle">Date</div>
-          <div id="timeTitle">Time</div>
-            <Date dateChange={this.dateChange.bind(this)} />
-            <Time timeChange={this.timeChange.bind(this)} />
-          </div>
-          <button onClick={this.findTable.bind(this)} >Find a Table</button>
-          <div>
-            <SlotMaker clicked={this.state.clicked} timeSlots={this.state.timeSlots} time={this.state.time} />
-          </div>
+        <div className="buttStyle">
+          <button className="btn btn-danger" id="findButt" onClick={this.findTable.bind(this)} >Find a Table</button>
+        </div>
+        <div id="slots" className="row">
+            <SlotMaker clicked={this.state.clicked} timeSlots={this.state.timeSlots} partySize={this.state.partySize} time={this.state.time} partySizeMax={this.state.partySizeMax} />
+        </div>
       </div>
     ) 
   }
