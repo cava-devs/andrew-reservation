@@ -4,12 +4,14 @@ import PartySize from './partySize.jsx';
 import Date from './date.jsx';
 import Time from './time.jsx';
 import SlotMaker from './slotMaker.jsx';
+import styles from '../app.css';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurantId: 1001,
+      restaurantId: this.props.match.params.restaurant_id,
       currPartySize: 2,
       isClicked: false,
       currTime: "6:00 PM", 
@@ -22,18 +24,18 @@ class App extends React.Component {
     } 
   }   
   componentDidMount() { 
-    axios.get(`/restaurant/1001/${this.state.currDate}`)
+    axios.get(`reservations/restaurant/${this.state.restaurantId}/${this.state.currDate}`)
       .then((response) => { 
         this.setState({
           currTimeSlots: response.data,
-        })
+        }); 
       })
       .catch((error) => {
         throw(error);
       });
   }
   findTable() {
-    axios.get(`/restaurant/${this.state.restaurantId}/${this.state.currDate}`)
+    axios.get(`reservations/restaurant/${this.state.restaurantId}/${this.state.currDate}`)
       .then((response) => {
         this.setState({
           timeSlots: response.data,
@@ -62,23 +64,23 @@ class App extends React.Component {
   }
   render () {
     return (
-      <div id="reserveContainer" className="col-lg-5 col-md-5 col-sm-10 col-xs-10">
-        <h4 id="title">Make a reservation</h4>
+      <div className={`col-lg-5 col-md-5 col-sm-10 col-xs-10 ${styles.reserveContainer}`}>
+        <h4 className={styles.title} >Make a reservation</h4>
         <PartySize partyChange={this.partySizeChange.bind(this)} />
-        <div id="dateTimeContain" className="container col-lg-12 col-md-12 col-sm-12 col-xs-12" > 
-          <div id="dateTitle" className="col-lg-6 col-md-6 col-xs-6">Date</div>
-          <div id="timeTitle" className="col-lg-6 col-md-6 col-xs-6">Time</div>     
-          <div id="dateCol" className="col-lg-6 col-md-6 col-xs-6 date">
+        <div className={`${styles.container} ${styles.dateTimeContain} col-lg-12 col-md-12 col-sm-12 col-xs-12`} > 
+          <div className={`${styles.dateTitle} col-lg-6 col-md-6 col-xs-6`}>Date</div>
+          <div className={`${styles.timeTitle} col-lg-6 col-md-6 col-xs-6`}>Time</div>     
+          <div className={`${styles.dateCol} col-lg-6 col-md-6 col-xs-6 date`}>
             <Date date={this.state.currDate} dateChange={this.dateChange.bind(this)} />
           </div>
-          <div className="col-lg-6 col-md-6 col-xs-6 time">
+          <div className={`col-lg-6 col-md-6 col-xs-6 ${styles.timeCol}`}>
             <Time time={this.state.currTime} timeChange={this.timeChange.bind(this)} />
           </div>
         </div> 
-        <div className="buttStyle">
-          <button className="btn btn-danger" id="findButt" onClick={this.findTable.bind(this)} >Find a Table</button>
+        <div className={`${styles.buttStyle}`}>
+          <button className={`btn btn-danger ${styles.findButt}`} onClick={this.findTable.bind(this)} >Find a Table</button>
         </div>
-        <div id="slots" className="container col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div className={`${styles.container} ${styles.slots} col-lg-12 col-md-12 col-sm-12 col-xs-12`}>
             <SlotMaker 
               isClicked={this.state.isClicked}
               timeSlots={this.state.timeSlots} 
